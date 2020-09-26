@@ -14,6 +14,9 @@ const mongoose = require('mongoose');
 // Подключаем движок для HTML 
 const exphbs = require('express-handlebars');
 
+// Подключаем написанные роуты
+const todoRoutes = require('./routes/todos');
+
 // Создаем константу для порта
 // Если есть системная переменная порт, то используем её
 // если нет, то ставим порт 3000
@@ -39,6 +42,9 @@ app.set('view engine', 'hbs');
 
 // Регистрируем папку, где буду храниться все виды сайта
 app.set('views', 'views');
+
+// Регистрируем роут из нашего файла todos
+app.use(todoRoutes);
 
 // Создаем асинхронную функцию 
 async function start() {
