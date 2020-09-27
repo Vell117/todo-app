@@ -1,1 +1,27 @@
-<h2>Index page</h2>
+<h2>Todos page</h2>
+
+<!--Передаем на главную страницу список todos. 
+Если в todo что-то есть, то рендерим-->
+{{#if todos.length}}
+<!--Оборачиваем в список-->
+<ul>
+<!--Итерируем массив -->
+    {{#each todos}}
+    <li class="todo">
+        <label>
+            <!--Если todo выполнен, то зачеркиваем его -->
+            {{#if completed}}
+                <input type="checkbox" checked>
+                <span class="completed">{{title}}</span>
+            {{else}}
+                <input type="checkbox">
+                <span>{{title}}</span>  
+            {{/if}}
+            <button class="btn btn-small">Save</button>
+        </label>
+    </li>
+    {{/each}}
+</ul>
+{{else}}
+<p>No todos</p>
+{{/if}}
