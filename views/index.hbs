@@ -8,17 +8,25 @@
 <!--Итерируем массив -->
     {{#each todos}}
     <li class="todo">
+        <!--Оборачиваем в форму, чтобы работали действия  -->
+        <form action="complete" method="POST">
         <label>
             <!--Если todo выполнен, то зачеркиваем его -->
             {{#if completed}}
-                <input type="checkbox" checked>
+                <input type="checkbox" checked name="completed">
                 <span class="completed">{{title}}</span>
             {{else}}
-                <input type="checkbox">
+                <input type="checkbox" name="completed">
                 <span>{{title}}</span>  
             {{/if}}
-            <button class="btn btn-small">Save</button>
+
+            <!--Определяем с каким todo работаем -->
+            <input type="hidden" value="{{_id}}" name="id"> 
+
+            <!--Для отправки формы задаем кнопке type="submit" -->
+            <button class="btn btn-small" type="submit">Save</button>
         </label>
+        </form>
     </li>
     {{/each}}
 </ul>

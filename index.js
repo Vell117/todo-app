@@ -11,6 +11,9 @@ const express = require('express');
 // Подключаем базу MongoDB (пакет mongoose)
 const mongoose = require('mongoose');
 
+// Модуль для работы с путями к файлам
+const path = require('path');
+
 // Подключаем движок для HTML 
 const exphbs = require('express-handlebars');
 
@@ -42,6 +45,13 @@ app.set('view engine', 'hbs');
 
 // Регистрируем папку, где буду храниться все виды сайта
 app.set('views', 'views');
+
+// Задаем логику для парсинга введенной инфы пользователем
+// используем urlencoded, чтобы считывать body 
+app.use(express.urlencoded({extended: true}))
+
+// Для распознавания пути к файлу с стилями
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Регистрируем роут из нашего файла todos
 app.use(todoRoutes);
