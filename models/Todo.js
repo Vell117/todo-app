@@ -7,7 +7,7 @@ const schema = new Schema({
     title: {
         type: String, 
         required: true
-    },
+    }, 
     completed: {
         type: Boolean,
         // Пишем по умолчанию false т.к, если мы только создали todo, то она ещё не завершина

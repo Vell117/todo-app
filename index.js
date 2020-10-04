@@ -4,6 +4,7 @@
 // Для запуска сервера. npm run dev 
 // Подключаем кастомный движок для HTML. npm i express-handlebars 
 
+const config = require('./config.json');
 // Входной файл в приложение 
 // Подключаем express
 const express = require('express');
@@ -62,8 +63,7 @@ async function start() {
     try {
         // Подключаемся к БД
         // первый параметр пукт к БД, второй - объект конфигурации
-        // по идее лучше путь поместить в конфиг, чтобы не показывать пароль к БД
-        await mongoose.connect('mongodb+srv://vell:090302@cluster0.abi20.mongodb.net/todos', {
+        await mongoose.connect(config.ptdb, {
             useNewUrlParser: true,
             useFindAndModify: false,
             useUnifiedTopology: true
